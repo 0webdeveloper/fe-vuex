@@ -4,7 +4,7 @@
 
       <div class="container">
           <div class="addedGoods">
-              <div v-for="item in checkCart"
+              <div v-for="item in inCart"
                    :key="item.id"
                    class="shopping-cart-section">
                   <img class="main-img-product" :src="require(`@/assets${item.image}`)" alt="">
@@ -35,7 +35,7 @@ export default {
         Quantity
     },
     computed: {
-      ...mapGetters(['checkCart'])
+      ...mapGetters(['inCart'])
     },
     methods: {
         removeProduct(id) {

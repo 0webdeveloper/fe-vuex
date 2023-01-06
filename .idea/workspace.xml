@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="118949b6-dc1d-4fea-aae2-f5f271fa94e6" name="Changes" comment="" />
+    <list default="true" id="118949b6-dc1d-4fea-aae2-f5f271fa94e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Products.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Products.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/MyButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/MyButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/brands.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/brands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Cart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Cart.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,6 +105,10 @@
       <workItem from="1672514950229" duration="1340000" />
       <workItem from="1672516329941" duration="640000" />
       <workItem from="1672518072089" duration="121000" />
+      <workItem from="1672647056473" duration="5458000" />
+      <workItem from="1672921930394" duration="3335000" />
+      <workItem from="1672931464055" duration="393000" />
+      <workItem from="1672987913729" duration="7638000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,6 @@
 <template>
     <div class="products__list">
+
         <div
             v-for="(product, idx) in allProducts"
             :key="product.id"
@@ -17,12 +18,12 @@
                     <span>{{ product.regular_price.currency}}</span>
                 </p>
 
-
                 <my-button
                     ref="btn"
                     @click.native="addToCart(product, idx)"
-                    :class="{inCart: idx === statusBtn}"
-                >{{ (idx+1 === product.id) ? buttonName ='В корзине' : 'Купить'  }}</my-button>
+                    :class="{checkCart: product.btnDisabled}"
+                    :disabled="product.btnDisabled"
+                >{{ product.buttonName }}</my-button>
             </div>
         </div>
     </div>
@@ -32,29 +33,18 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-    data: () => ({
-        buttonName: 'Купить',
-        statusBtn: null
-    }),
-    computed: {
-        ...mapGetters(['allProducts', 'checkCart']),
-        setButton() {
-                    return this.$store.getters.checkCart[0].buttonName
-        }
+     computed: {
+        ...mapGetters(['allProducts', 'inCart']),
     },
     methods: {
         ...mapActions(['fetchAllProducts']),
-        addToCart(prod, idx) {
+        addToCart(prod) {
+            // const addFieldsToProd = {buttonName: "В корзине", btnDisabled: true}
+            // Object.assign(prod, addFieldsToProd);
+
             prod.buttonName = 'В корзине';
+            prod.btnDisabled = true;
             this.$store.dispatch('putProductToCart', prod);
-            this.statusBtn = idx;
-
-
-            // if(this.statusBtn === idx) {
-            //     let item = this.allProducts[idx];
-            //     item.buttonName = 'В корзине';
-            //     this.$set(this.allProducts, idx, item);
-            // }
         }
     },
     mounted() {
@@ -79,9 +69,6 @@ export default {
     position: relative;
     overflow: hidden;
     max-width: 350px;
-    img {
-
-    }
 }
 .products__card::before {
     content: '';
@@ -115,7 +102,8 @@ export default {
     line-height: 2;
 }
 
-.inCart{
-    background: red;
+.checkCart{
+    background: #c38b7d;
+    color: #fff;
 }
 </style>

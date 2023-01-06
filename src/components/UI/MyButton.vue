@@ -16,13 +16,11 @@ export default {
     cursor: pointer;
     border-radius: 5px;
     color: var(--font-color);
-    border: solid;
-    border-image-slice: 1;
-    border-width: 2px;
-    border-image-source: linear-gradient(60deg, #b16ec4, #5f97b9);
+    border: 2px solid #97b4c6;
 
     &:disabled {
-        opacity: .5;
+        //opacity: .5;
+        cursor: not-allowed;
     }
 }
 </style>

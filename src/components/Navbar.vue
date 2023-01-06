@@ -20,7 +20,7 @@
                                         c0-2.299-1.867-4.166-4.168-4.166C31.625,34.65,29.762,36.518,29.762,38.816z"/>
                                 </g>
                                 </svg>
-                        <span class="totalCount">{{ checkCart.length }}</span>
+                        <span class="totalCount">{{ inCart.length }}</span>
 <!--                        <div v-if="added" class="showMessageAddToCart">Товар добавлен в корзину</div>-->
                     </div>
                 </router-link>
@@ -33,7 +33,7 @@ import { mapGetters } from "vuex";
 
 export default {
     computed: {
-        ...mapGetters(['checkCart'])
+        ...mapGetters(['inCart'])
     }
 }
 

@@ -1,5 +1,6 @@
 import Brands from '@/db/brands.json';
 import Products from '@/db/products.json';
+import {createLogger} from "vuex";
 
 
 const state = () => ({
@@ -11,7 +12,7 @@ const state = () => ({
 const getters = {
     allBrands: state => state.brands,
     allProducts: state => state.products,
-    checkCart: state => state.cart
+    inCart: state => state.cart
 };
 
 const mutations = {
@@ -19,6 +20,18 @@ const mutations = {
         state.brands = payload
     },
     changeProducts(state, payload) {
+
+        const idInCart = state.cart.map(item => item.id); // id товаров в корзине
+
+        for(let item of payload) {
+            if(idInCart.includes(item.id)) {
+                item.buttonName = 'В корзине';
+                item.btnDisabled = true;
+            } else {
+                item.buttonName = 'Купить';
+                item.btnDisabled = false;
+            }
+        }
         state.products = payload
     },
     sortBrands(state, code) {
