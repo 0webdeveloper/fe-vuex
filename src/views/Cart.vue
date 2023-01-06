@@ -46,6 +46,11 @@ export default {
 </script>
 
 <style lang="scss">
+.cartPage {
+    h1 {
+        padding: 30px 0 50px;
+    }
+}
 .shopping-cart-section {
     border-bottom: 1px solid var(--blue-white);
     display: flex;
