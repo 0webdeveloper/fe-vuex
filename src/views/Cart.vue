@@ -11,7 +11,8 @@
                   <div>{{ item.title }}</div>
 
                   <div>$ {{ item.regular_price.value }}</div>
-                  <Quantity />
+                  <Quantity :regularPrice="item.regular_price.value"
+                        @sumPrice="sumPrice"/>
 
 <!--                  <div class="totalCount">$ <span>{{ summedVal }}</span></div>-->
 
@@ -31,6 +32,9 @@
 import { mapGetters } from 'vuex';
 import Quantity from '@/components/Quantity';
 export default {
+    data: ()=>({
+        summedVal: null
+    }),
     components: {
         Quantity
     },
@@ -40,6 +44,9 @@ export default {
     methods: {
         removeProduct(id) {
             this.$store.dispatch('deleteProduct', id);
+        },
+        sumPrice(sum) {
+            this.summedVal = sum; //wrong!
         }
     }
 }

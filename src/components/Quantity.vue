@@ -1,5 +1,9 @@
 <template>
-    <div class="quantity">
+
+    <div>
+
+
+    <div class="quantity" >
         <input
             type="text"
             maxlength="2"
@@ -15,6 +19,8 @@
             @click="minus"
             class="quantity__button minus">-</button>
     </div>
+        <div class="sumPrice">{{sumPrice}}</div>
+    </div>
 </template>
 
 <script>
@@ -22,6 +28,12 @@ export default {
     data:()=>({
         counter: 1
     }),
+    props: {
+        regularPrice: {
+            type: Number,
+            required: true
+        }
+    },
     methods: {
         plus() {
             this.counter += 1;
@@ -34,6 +46,26 @@ export default {
             if(this.counter < 1) {
                 this.counter = 1;
             }
+        },
+
+    },
+    computed: {
+        sumPrice() {
+            let count = this.counter;
+            let val
+            if(this.counter < count) {
+                count++
+                return val = this.regularPrice + this.regularPrice;
+                // return count++
+            } else {
+                count--
+                return val = this.regularPrice - this.regularPrice;
+                // return count--
+            }
+            return val;
+           //  const count = this.counter + this.regularPrice;
+           //  // this.$emit('sumPrice', count)
+           // return count;
         }
     }
 }
@@ -42,6 +74,8 @@ export default {
 <style scoped lang="scss">
 .quantity {
     position: relative;
+    display: inline-block;
+    margin-right: 30px;
 input{
     width: 28px;
     height: 29px;
@@ -62,5 +96,8 @@ input{
      bottom: 0;
      top: auto;
  }
+}
+.sumPrice {
+    display: inline-block;
 }
 </style>
