@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="118949b6-dc1d-4fea-aae2-f5f271fa94e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Quantity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Quantity.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Cart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Cart.vue" afterDir="false" />
-    </list>
+    <list default="true" id="118949b6-dc1d-4fea-aae2-f5f271fa94e6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,6 +107,7 @@
       <workItem from="1673207926918" duration="1686000" />
       <workItem from="1673426710009" duration="44000" />
       <workItem from="1673463452998" duration="3254000" />
+      <workItem from="1673467844489" duration="379000" />
     </task>
     <servers />
   </component>
