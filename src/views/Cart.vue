@@ -10,7 +10,7 @@
                   <img class="main-img-product" :src="require(`@/assets${item.image}`)" alt="">
                   <div>{{ item.title }}</div>
 
-                  <div>$ {{ item.regular_price.value }}</div>
+                  <div>{{ item.regular_price.value }} $</div>
                   <Quantity :regularPrice="item.regular_price.value"
                         @sumPrice="sumPrice"/>
 

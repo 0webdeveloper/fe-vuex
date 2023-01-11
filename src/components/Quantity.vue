@@ -1,31 +1,30 @@
 <template>
-
     <div>
-
-
-    <div class="quantity" >
-        <input
-            type="text"
-            maxlength="2"
-            min="0"
-            max="99"
-            value=""
-            v-model="counter"
-        >
-        <button
-            @click="plus"
-            class="quantity__button plus">+</button>
-        <button
-            @click="minus"
-            class="quantity__button minus">-</button>
-    </div>
-        <div class="sumPrice">{{sumPrice}}</div>
+        <div class="quantity">
+            <input
+                type="text"
+                maxlength="2"
+                min="0"
+                max="99"
+                value=""
+                v-model="counter"
+            >
+            <button
+                @click="plus"
+                class="quantity__button plus">+
+            </button>
+            <button
+                @click="minus"
+                class="quantity__button minus">-
+            </button>
+        </div>
+        <div class="sumPrice">{{ sumPrice }} $</div>
     </div>
 </template>
 
 <script>
 export default {
-    data:()=>({
+    data: () => ({
         counter: 1
     }),
     props: {
@@ -43,29 +42,14 @@ export default {
         },
         minus() {
             this.counter -= 1;
-            if(this.counter < 1) {
+            if (this.counter < 1) {
                 this.counter = 1;
             }
         },
-
     },
     computed: {
         sumPrice() {
-            let count = this.counter;
-            let val
-            if(this.counter < count) {
-                count++
-                return val = this.regularPrice + this.regularPrice;
-                // return count++
-            } else {
-                count--
-                return val = this.regularPrice - this.regularPrice;
-                // return count--
-            }
-            return val;
-           //  const count = this.counter + this.regularPrice;
-           //  // this.$emit('sumPrice', count)
-           // return count;
+             return (this.counter * this.regularPrice).toFixed(2);
         }
     }
 }
@@ -76,15 +60,17 @@ export default {
     position: relative;
     display: inline-block;
     margin-right: 30px;
-input{
-    width: 28px;
-    height: 29px;
-    padding:5px;
+
+    input {
+        width: 28px;
+        height: 29px;
+        padding: 5px;
+    }
 }
-}
+
 .quantity__button {
     position: absolute;
-    top:0;
+    top: 0;
     right: -14px;
     width: 15px;
     height: 15px;
@@ -92,11 +78,13 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
-&.minus {
-     bottom: 0;
-     top: auto;
- }
+
+    &.minus {
+        bottom: 0;
+        top: auto;
+    }
 }
+
 .sumPrice {
     display: inline-block;
 }
