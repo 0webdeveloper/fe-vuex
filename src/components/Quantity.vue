@@ -46,30 +46,16 @@ export default {
             if(this.counter < 1) {
                 this.counter = 1;
             }
-        },
-
+        }
     },
     computed: {
         sumPrice() {
-            let count = this.counter;
-            let val
-            if(this.counter < count) {
-                count++
-                return val = this.regularPrice + this.regularPrice;
-                // return count++
-            } else {
-                count--
-                return val = this.regularPrice - this.regularPrice;
-                // return count--
-            }
-            return val;
-           //  const count = this.counter + this.regularPrice;
-           //  // this.$emit('sumPrice', count)
-           // return count;
+           return (this.counter * this.regularPrice).toFixed(2);
         }
     }
 }
 </script>
+
 
 <style scoped lang="scss">
 .quantity {
