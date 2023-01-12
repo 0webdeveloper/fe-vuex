@@ -11,18 +11,17 @@
                   <div>{{ item.title }}</div>
 
                   <div>{{ item.regular_price.value }} $</div>
-                  <Quantity :regularPrice="item.regular_price.value"
-                        @sumPrice="sumPrice"/>
-
-<!--                  <div class="totalCount">$ <span>{{ summedVal }}</span></div>-->
-
+                  <Quantity :regularPrice="item.regular_price.value" />
 
                   <div class="deleteFromCart" @click="removeProduct(item.id)">
                       <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">
                   </div>
               </div>
           </div>
-          <router-link to="/order"><my-button>Перейти к оформлению</my-button></router-link>
+          <div class="totalSum">
+              <p>Общая сумма:</p>
+              <router-link to="/order"><my-button>Перейти к оформлению</my-button></router-link>
+          </div>
       </div>
 
   </div>
@@ -33,7 +32,7 @@ import { mapGetters } from 'vuex';
 import Quantity from '@/components/Quantity';
 export default {
     data: ()=>({
-        summedVal: null
+
     }),
     components: {
         Quantity
@@ -44,9 +43,6 @@ export default {
     methods: {
         removeProduct(id) {
             this.$store.dispatch('deleteProduct', id);
-        },
-        sumPrice(sum) {
-            this.summedVal = sum; //wrong!
         }
     }
 }
@@ -75,5 +71,13 @@ export default {
 .deleteFromCart {
     width: 30px;
     cursor: pointer;
+}
+.totalSum {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    p {
+        margin-right: 20px;
+    }
 }
 </style>

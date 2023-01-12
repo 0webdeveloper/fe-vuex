@@ -45,7 +45,7 @@ export default {
             if (this.counter < 1) {
                 this.counter = 1;
             }
-        },
+        }
     },
     computed: {
         sumPrice() {
