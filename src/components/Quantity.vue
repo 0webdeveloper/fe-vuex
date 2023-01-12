@@ -19,7 +19,7 @@
             @click="minus"
             class="quantity__button minus">-</button>
     </div>
-        <div class="sumPrice">{{sumPrice}}</div>
+        <div class="sumPrice">{{sumPrice}} $</div>
     </div>
 </template>
 
