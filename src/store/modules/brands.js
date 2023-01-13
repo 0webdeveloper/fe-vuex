@@ -1,6 +1,7 @@
 import Brands from '@/db/brands.json';
 import Products from '@/db/products.json';
 import {createLogger} from "vuex";
+import Vue from 'vue'
 
 
 const state = () => ({

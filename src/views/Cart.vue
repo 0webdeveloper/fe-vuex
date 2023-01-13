@@ -11,7 +11,7 @@
                   <div>{{ item.title }}</div>
 
                   <div>{{ item.regular_price.value }} $</div>
-                  <Quantity :regularPrice="item.regular_price.value" />
+                  <Quantity :regularPrice="item.regular_price.value" @prodCount="prodCount"/>
 
                   <div class="deleteFromCart" @click="removeProduct(item.id)">
                       <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">
@@ -43,6 +43,10 @@ export default {
     methods: {
         removeProduct(id) {
             this.$store.dispatch('deleteProduct', id);
+        },
+        prodCount(count, sum) {
+            console.log(count, sum);
+            // this.$store.commit('setCount', count, sum);
         }
     }
 }

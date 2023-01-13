@@ -18,7 +18,7 @@
                 class="quantity__button minus">-
             </button>
         </div>
-        <div class="sumPrice">{{ sumPrice }} $</div>
+<!--        <div class="sumPrice">{{ sumPrice }} $</div>-->
     </div>
 </template>
 
@@ -36,15 +36,17 @@ export default {
     methods: {
         plus() {
             this.counter += 1;
-            if (this.counter > 99) {
-                return this.counter = 99;
+            if (this.counter > 5) {
+                this.counter = 5;
             }
+            this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
         },
         minus() {
             this.counter -= 1;
             if (this.counter < 1) {
-                this.counter = 1;
+                 this.counter = 1;
             }
+            this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
         }
     },
     computed: {
