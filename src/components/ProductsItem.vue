@@ -24,18 +24,27 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
     name: "ProductsItem",
+    data:()=>({
+
+    }),
     props: ['product'],
     methods: {
+        ...mapActions(['putProductToCart']),
         addToCart(prod) {
-            // const addFieldsToProd = {buttonName: "В корзине", btnDisabled: true}
-            // Object.assign(prod, addFieldsToProd);
 
-            prod.buttonName = 'В корзине';
-            prod.btnDisabled = true;
-            // this.putProductToCart(prod);
-            this.$store.dispatch('putProductToCart', prod);
+            this.$set(this.product, 'buttonName', 'В корзине'); // Оптимизировать!
+            this.$set(this.product, 'btnDisabled', true);
+            this.$set(this.product, 'quantity', 1)
+
+            // this.product = Object.assign({}, this.product, { buttonName: "В корзине", btnDisabled: true })
+
+
+            this.putProductToCart(prod); // вместо dispatch
+            // this.$store.dispatch('putProductToCart', prod);
         }
     },
     mounted() {
