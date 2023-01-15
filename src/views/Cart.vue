@@ -4,19 +4,20 @@
 
       <div class="container">
           <div class="addedGoods">
-              <div v-for="item in inCart"
+              <cart-items v-for="item in inCart"
                    :key="item.id"
+                   :product="item"
                    class="shopping-cart-section">
-                  <img class="main-img-product" :src="require(`@/assets${item.image}`)" alt="">
-                  <div>{{ item.title }}</div>
+<!--                  <img class="main-img-product" :src="require(`@/assets${item.image}`)" alt="">-->
+<!--                  <div>{{ item.title }}</div>-->
 
-                  <div>{{ item.regular_price.value }} $</div>
-                  <Quantity :regularPrice="item.regular_price.value" @prodCount="prodCount"/>
+<!--                  <div>{{ item.regular_price.value }} $</div>-->
+<!--                  <Quantity :regularPrice="item.regular_price.value" @prodCount="prodCount"/>-->
 
-                  <div class="deleteFromCart" @click="removeProduct(item.id)">
-                      <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">
-                  </div>
-              </div>
+<!--                  <div class="deleteFromCart" @click="removeProduct(item.id)">-->
+<!--                      <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">-->
+<!--                  </div>-->
+              </cart-items>
           </div>
           <div class="totalSum">
               <p>Общая сумма:</p>
@@ -29,25 +30,25 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Quantity from '@/components/Quantity';
+import CartItems from "@/components/CartItems.vue";
 export default {
     data: ()=>({
 
     }),
     components: {
-        Quantity
+        CartItems
     },
     computed: {
       ...mapGetters(['inCart'])
     },
     methods: {
-        removeProduct(id) {
-            this.$store.dispatch('deleteProduct', id);
-        },
-        prodCount(count, sum) {
-            console.log(count, sum);
-            // this.$store.commit('setCount', count, sum);
-        }
+        // removeProduct(id) {
+        //     this.$store.dispatch('deleteProduct', id);
+        // },
+        // prodCount(count, sum) {
+        //     console.log(count, sum);
+        //     // this.$store.commit('setCount', count, sum);
+        // }
     }
 }
 </script>
@@ -58,24 +59,24 @@ export default {
         padding: 30px 0 50px;
     }
 }
-.shopping-cart-section {
-    border-bottom: 1px solid var(--blue-white);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .main-img-product {
-        max-width: 150px;
-    }
-}
-.deleteFromCart {
-    svg {
-        max-width: 25px;
-    }
-}
-.deleteFromCart {
-    width: 30px;
-    cursor: pointer;
-}
+//.shopping-cart-section {
+//    border-bottom: 1px solid var(--blue-white);
+//    display: flex;
+//    align-items: center;
+//    justify-content: space-between;
+//    .main-img-product {
+//        max-width: 150px;
+//    }
+//}
+//.deleteFromCart {
+//    svg {
+//        max-width: 25px;
+//    }
+//}
+//.deleteFromCart {
+//    width: 30px;
+//    cursor: pointer;
+//}
 .totalSum {
     display: flex;
     justify-content: flex-end;

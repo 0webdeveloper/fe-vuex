@@ -1,18 +1,16 @@
 <template>
-    <div>
         <li>
             <a
                 href="#"
-                @click.prevent="sortBrands(brand.code)"
+                @click.prevent="sortBrands(compBrand.code)"
                 :class="{ active: isActive }"
-            >{{ brand.title }}</a>
+            >{{ compBrand.title }}</a>
         </li>
-    </div>
 </template>
 
 <script>
 export default {
-    data: ()=>({
+    data: () => ({
         isActive: null
     }),
     props: {
@@ -21,11 +19,13 @@ export default {
         }
     },
     computed: {
-
+        compBrand() {
+            return this.brand;
+        }
     },
     methods: {
         sortBrands(code) {
-
+            this.isActive = false;
             this.isActive = true;
             this.$store.dispatch('sortBrands', code)
         }

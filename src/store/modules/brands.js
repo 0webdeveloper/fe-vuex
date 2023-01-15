@@ -44,21 +44,31 @@ const mutations = {
         }
     },
     putToCart(state, payload) {
-        if(state.cart.length) {
+        if(state.cart.length) { // если в массиве уже есть элемент
             const itemArr = [];
-            state.cart.map(item => itemArr.push(item.id)); // пушим id товаров в новый массив
+            state.cart.map(item => itemArr.push(item.id)); // собираем все id товаров в массив
 
-            if(!itemArr.includes(payload.id)) { // если нет в массиве таких id
+            if(!itemArr.includes(payload.id)) { // если нет в массиве таких id, кладем в корзину
                 state.cart.push(payload);
             }
         } else {
-            state.cart.push(payload);
+            state.cart.push(payload); // если корзина пуста, кладем первый товар
         }
-        localStorage.setItem('cart', JSON.stringify(state.cart))
+        localStorage.setItem('cart', JSON.stringify(state.cart)) // содержимое корзины в localStorage
     },
     deleteProduct(state, id) {
         state.cart = state.cart.filter(item => item.id !== id);
         localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    modifyQuantity(state, payload) {
+        state.cart.forEach(item => {
+            if (item.id == payload.id) {
+                item.quantity = payload.counter; // меняем счетчик
+                const newPrice = +(payload.counter * payload.price).toFixed(2);
+                item.sumProduct = newPrice; // добавляем новое свойство в объект, увеличенной ценой
+            }
+            localStorage.setItem('cart', JSON.stringify(state.cart));
+        })
     }
 };
 
@@ -77,6 +87,9 @@ const actions = {
     },
     deleteProduct({commit}, id) {
         commit('deleteProduct', id);
+    },
+    setQuantity({commit}, obj) {
+        commit('modifyQuantity', obj);
     }
 };
 

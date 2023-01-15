@@ -1,6 +1,5 @@
 <template>
     <div class="products__list">
-
         <products-item
             v-for="product in allProducts"
             :key="product.id"

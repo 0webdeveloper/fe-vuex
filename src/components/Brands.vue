@@ -1,7 +1,7 @@
 <template>
     <ul class="products__list">
         <brands-items
-            v-for="(brand, idx) in allBrands"
+            v-for="(brand) in allBrands"
               :key="brand.id"
               :brand = "brand"
              />
