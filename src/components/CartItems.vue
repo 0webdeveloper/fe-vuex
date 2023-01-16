@@ -4,7 +4,7 @@
         <div>{{ productItem.title }}</div>
 
         <div>{{ productItem.regular_price.value }} $</div>
-<!--        <Quantity :regularPrice="productItem.regular_price.value" @prodCount="prodCount"/>-->
+        <!--        <Quantity :regularPrice="productItem.regular_price.value" @prodCount="prodCount"/>-->
 
 
         <div class="quantity">
@@ -25,7 +25,6 @@
                 class="quantity__button minus">-
             </button>
         </div>
-{{inCart}}
 
         <div class="deleteFromCart" @click="removeProduct(productItem.id)">
             <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">
@@ -46,13 +45,13 @@ export default {
         }
     },
     data: ()=>({
-        counter: 0
+        counter: null
     }),
     components: {
         // Quantity
     },
     computed: {
-        ...mapGetters(['inCart']),
+        ...mapGetters(['counterInItem']),
         productItem() {
             return this.product;
         }
@@ -90,6 +89,9 @@ export default {
             });
             // this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
         }
+    },
+    mounted() {
+        this.counter = this.counterInItem;
     }
 }
 </script>

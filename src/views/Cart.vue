@@ -1,31 +1,31 @@
 <template>
-  <div class="cartPage">
-    <h1>This is an cart page</h1>
+    <div class="cartPage">
+        <h1>This is an cart page</h1>
 
-      <div class="container">
-          <div class="addedGoods">
-              <cart-items v-for="item in inCart"
-                   :key="item.id"
-                   :product="item"
-                   class="shopping-cart-section">
-<!--                  <img class="main-img-product" :src="require(`@/assets${item.image}`)" alt="">-->
-<!--                  <div>{{ item.title }}</div>-->
+        <div class="container">
+            <div class="addedGoods">
+                <cart-items v-for="item in inCart"
+                            :key="item.id"
+                            :product="item"
+                            class="shopping-cart-section">
+                    <!--                  <img class="main-img-product" :src="require(`@/assets${item.image}`)" alt="">-->
+                    <!--                  <div>{{ item.title }}</div>-->
 
-<!--                  <div>{{ item.regular_price.value }} $</div>-->
-<!--                  <Quantity :regularPrice="item.regular_price.value" @prodCount="prodCount"/>-->
+                    <!--                  <div>{{ item.regular_price.value }} $</div>-->
+                    <!--                  <Quantity :regularPrice="item.regular_price.value" @prodCount="prodCount"/>-->
 
-<!--                  <div class="deleteFromCart" @click="removeProduct(item.id)">-->
-<!--                      <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">-->
-<!--                  </div>-->
-              </cart-items>
-          </div>
-          <div class="totalSum">
-              <p>Общая сумма:</p>
-              <router-link to="/order"><my-button>Перейти к оформлению</my-button></router-link>
-          </div>
-      </div>
+                    <!--                  <div class="deleteFromCart" @click="removeProduct(item.id)">-->
+                    <!--                      <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">-->
+                    <!--                  </div>-->
+                </cart-items>
+            </div>
+            <div class="totalSum">
+                <p>Общая сумма:</p>
+                <router-link to="/order"><my-button>Перейти к оформлению</my-button></router-link>
+            </div>
+        </div>
 
-  </div>
+    </div>
 </template>
 
 <script>
@@ -39,7 +39,7 @@ export default {
         CartItems
     },
     computed: {
-      ...mapGetters(['inCart'])
+        ...mapGetters(['inCart'])
     },
     methods: {
         // removeProduct(id) {

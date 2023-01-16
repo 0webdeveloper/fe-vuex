@@ -13,7 +13,12 @@ const state = () => ({
 const getters = {
     allBrands: state => state.brands,
     allProducts: state => state.products,
-    inCart: state => state.cart
+    inCart: state => state.cart,
+    counterInItem: (state, getters) => {
+        for (let i of getters.inCart) {
+            return i.quantity;
+        }
+    }
 };
 
 const mutations = {
