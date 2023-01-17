@@ -3,7 +3,7 @@
     <h1>This is an cart page</h1>
 
       <div class="container">
-          <div class="addedGoods">
+          <div class="addedGoods" v-if="inCart.length">
               <cart-items v-for="item in inCart"
                    :key="item.id"
                    :product="item"
@@ -19,6 +19,7 @@
 <!--                  </div>-->
               </cart-items>
           </div>
+          <div v-else> <h2>Нет товаров </h2></div>
           <div class="totalSum">
               <p>Общая сумма:</p>
               <router-link to="/order"><my-button>Перейти к оформлению</my-button></router-link>
@@ -32,9 +33,7 @@
 import { mapGetters } from 'vuex';
 import CartItems from "@/components/CartItems.vue";
 export default {
-    data: ()=>({
 
-    }),
     components: {
         CartItems
     },

@@ -25,7 +25,6 @@ export default {
     },
     methods: {
         sortBrands(code) {
-            this.isActive = false;
             this.isActive = true;
             this.$store.dispatch('sortBrands', code)
         }

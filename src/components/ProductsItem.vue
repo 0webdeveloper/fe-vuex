@@ -48,7 +48,8 @@ export default {
         }
     },
     mounted() {
-        this.$set(this.product, 'quantity', 1) // добавляем каждому товару реактивное свойство
+        this.$set(this.product, 'quantity', 1); // добавляем каждому товару реактивное свойство
+        this.$set(this.product, 'sumProduct', this.product.regular_price.value)
     }
 }
 </script>
