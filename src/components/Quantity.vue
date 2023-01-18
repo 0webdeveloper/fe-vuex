@@ -18,7 +18,6 @@
                 class="quantity__button minus">-
             </button>
         </div>
-<!--        <div class="sumPrice">{{ sumPrice }} $</div>-->
     </div>
 </template>
 
@@ -29,8 +28,13 @@ export default {
     }),
     props: {
         regularPrice: {
-            type: Number,
+            type: Object,
             required: true
+        }
+    },
+    computed: {
+        itemsProd() {
+            return this.regularPrice;
         }
     },
     methods: {
@@ -39,20 +43,32 @@ export default {
             if (this.counter > 5) {
                 this.counter = 5;
             }
-            this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
+            this.$store.dispatch('setQuantity', {
+                id: this.itemsProd.id,
+                counter: this.counter,
+                price: this.itemsProd.regular_price.value
+            });
+
+            this.$emit('pruductSum',  this.itemsProd.sumProduct);
+
         },
         minus() {
             this.counter -= 1;
             if (this.counter < 1) {
-                 this.counter = 1;
+                this.counter = 1;
             }
-            this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
-        }
+            this.$store.dispatch('setQuantity', {
+                id: this.itemsProd.id,
+                counter: this.counter,
+                price: this.itemsProd.regular_price.value
+            });
+
+            this.$emit('pruductSum',  this.itemsProd.sumProduct);
+        },
+
     },
-    computed: {
-        sumPrice() {
-             return (this.counter * this.regularPrice).toFixed(2);
-        }
+    mounted() {
+        this.counter = this.itemsProd.quantity;
     }
 }
 </script>

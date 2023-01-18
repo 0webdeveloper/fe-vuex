@@ -32,9 +32,6 @@
 import { mapGetters } from 'vuex';
 import CartItems from "@/components/CartItems.vue";
 export default {
-    data: ()=>({
-
-    }),
     components: {
         CartItems
     },

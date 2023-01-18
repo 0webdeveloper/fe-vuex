@@ -4,27 +4,9 @@
         <div>{{ productItem.title }}</div>
 
         <div>{{ productItem.regular_price.value }} $</div>
-        <!--        <Quantity :regularPrice="productItem.regular_price.value" @prodCount="prodCount"/>-->
+        <Quantity :regularPrice="productItem" @pruductSum="prodCount"/>
 
-
-        <div class="quantity">
-            <input
-                type="text"
-                maxlength="2"
-                min="0"
-                max="99"
-                value=""
-                v-model="counter"
-            >
-            <button
-                @click="plus"
-                class="quantity__button plus">+
-            </button>
-            <button
-                @click="minus"
-                class="quantity__button minus">-
-            </button>
-        </div>
+        <div>{{ setLoadSum }} $</div>
 
         <div class="deleteFromCart" @click="removeProduct(productItem.id)">
             <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">
@@ -33,7 +15,7 @@
 </template>
 
 <script>
-// import Quantity from "@/components/Quantity.vue";
+import Quantity from "@/components/Quantity.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -45,54 +27,36 @@ export default {
         }
     },
     data: ()=>({
-        counter: null
+        prodSumLoad: 1
     }),
     components: {
-        // Quantity
+        Quantity
     },
     computed: {
         ...mapGetters(['counterInItem']),
         productItem() {
             return this.product;
+        },
+        setLoadSum() {
+            return this.prodSumLoad = this.productItem.sumProduct;
+        },
+        totalSum() {
+
         }
     },
     methods: {
         removeProduct(id) {
             this.$store.dispatch('deleteProduct', id);
         },
-        prodCount(count, sum) {
-            console.log(count, sum);
-            // this.$store.commit('setCount', count, sum);
-        },
-        plus() {
-            this.counter += 1;
-            if (this.counter > 5) {
-                this.counter = 5;
-            }
-            // this.$set(this.product, 'quantity', this.counter)
-            this.$store.dispatch('setQuantity', {
-                id: this.productItem.id,
-                counter: this.counter,
-                price: this.productItem.regular_price.value
-            });
-            // this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
-        },
-        minus() {
-            this.counter -= 1;
-            if (this.counter < 1) {
-                this.counter = 1;
-            }
-            this.$store.dispatch('setQuantity', {
-                id: this.productItem.id,
-                counter: this.counter,
-                price: this.productItem.regular_price.value
-            });
-            // this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
-        }
+        prodCount() {}
     },
     mounted() {
-        this.counter = this.counterInItem;
+        const arr = [];
+        arr.push(this.setLoadSum)
+        const total = arr.reduce((sum, item) => sum + item);
+        console.log(total);
     }
+
 }
 </script>
 
@@ -119,40 +83,6 @@ export default {
     cursor: pointer;
 }
 
-
-
-
-
-
-
-.quantity {
-    position: relative;
-    display: inline-block;
-    margin-right: 30px;
-
-    input {
-        width: 28px;
-        height: 29px;
-        padding: 5px;
-    }
-}
-
-.quantity__button {
-    position: absolute;
-    top: 0;
-    right: -14px;
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &.minus {
-        bottom: 0;
-        top: auto;
-    }
-}
 
 .sumPrice {
     display: inline-block;
