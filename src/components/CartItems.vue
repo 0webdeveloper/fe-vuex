@@ -12,7 +12,7 @@
         <div class="deleteFromCart" @click="removeProduct(productItem.id)">
             <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">
         </div>
-        {{totalSum}}
+
     </div>
 </template>
 
@@ -41,22 +41,14 @@ export default {
         },
         setLoadSum() {
             return this.prodSumLoad = this.productItem.sumProduct;
-        },
-        totalSum() {
-
         }
     },
     methods: {
         removeProduct(id) {
             this.$store.dispatch('deleteProduct', id);
         },
-        prodCount(sum) {
-            // console.log(sum);
-        },
-    },
-    // mounted() {
-    //     // this.counter = this.counterInItem;
-    // }
+        prodCount() {}
+    }
 }
 </script>
 
@@ -83,44 +75,6 @@ export default {
     cursor: pointer;
 }
 
-
-
-
-
-
-//
-//.quantity {
-//    position: relative;
-//    display: inline-block;
-//    margin-right: 30px;
-//
-//    input {
-//        width: 28px;
-//        height: 29px;
-//        padding: 5px;
-//    }
-//}
-//
-//.quantity__button {
-//    position: absolute;
-//    top: 0;
-//    right: -14px;
-//    width: 15px;
-//    height: 15px;
-//    cursor: pointer;
-//    display: flex;
-//    justify-content: center;
-//    align-items: center;
-//
-//    &.minus {
-//        bottom: 0;
-//        top: auto;
-//    }
-//}
-//
-//.sumPrice {
-//    display: inline-block;
-//}
 
 
 

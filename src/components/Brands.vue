@@ -1,38 +1,35 @@
 <template>
     <ul class="products__list">
-        <brands-items
-            v-for="(brand) in allBrands"
+        <li
+            v-for="(brand, idx) in allBrands"
               :key="brand.id"
               :brand = "brand"
-             />
-<!--        <a-->
-<!--            href="#"-->
-<!--            @click.prevent="sortBrands(idx, brand.code)"-->
-<!--            :class="{ active: idx === isActive }"-->
-<!--        >{{ brand.title }}</a>-->
+             >
+        <a
+            href="#"
+            @click.prevent="sortBrands(idx, brand.code)"
+            :class="{ active: idx === isActive }"
+        >{{ brand.title }}</a>
+        </li>
     </ul>
 </template>
 
 <script>
-import BrandsItems from "@/components/BrandsItems.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
     data: () => ({
-
+        isActive: null
     }),
-    components: {
-        BrandsItems
-    },
     computed: {
-      ...mapGetters(['allBrands'])
+      ...mapGetters(['allBrands']),
     },
     methods: {
         ...mapActions(['fetchAllBrands']),
-        // sortBrands(idx, code) {
-        //     this.isActive = idx;
-        //     this.$store.dispatch('sortBrands', code)
-        // }
+        sortBrands(idx, code) {
+            this.isActive = idx;
+            this.$store.dispatch('sortBrands', code)
+        }
     },
     mounted() {
         this.fetchAllBrands();
@@ -44,5 +41,18 @@ export default {
 .products__list {
     position: sticky;
     top: 0;
+}
+li {
+    list-style: none;
+    line-height: 2rem;
+    border-bottom: 1px solid #a9a9a9;
+}
+
+a {
+    text-decoration: none;
+    color: #252525;
+}
+a.active {
+    color: red;
 }
 </style>

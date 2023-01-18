@@ -7,21 +7,13 @@
               <cart-items v-for="item in inCart"
                    :key="item.id"
                    :product="item"
-                   class="shopping-cart-section">
-<!--                  <img class="main-img-product" :src="require(`@/assets${item.image}`)" alt="">-->
-<!--                  <div>{{ item.title }}</div>-->
-
-<!--                  <div>{{ item.regular_price.value }} $</div>-->
-<!--                  <Quantity :regularPrice="item.regular_price.value" @prodCount="prodCount"/>-->
-
-<!--                  <div class="deleteFromCart" @click="removeProduct(item.id)">-->
-<!--                      <img :src="require('@/assets/trash-svgrepo-com.svg')" alt="">-->
-<!--                  </div>-->
+                   class="shopping-cart-section"
+                   >
               </cart-items>
           </div>
           <div v-else> <h2>Нет товаров </h2></div>
           <div class="totalSum">
-              <p>Общая сумма:</p>
+              <p>Общая сумма: {{ sumTotal }} $</p>
               <router-link to="/order"><my-button>Перейти к оформлению</my-button></router-link>
           </div>
       </div>
@@ -38,16 +30,16 @@ export default {
         CartItems
     },
     computed: {
-      ...mapGetters(['inCart'])
-    },
-    methods: {
-        // removeProduct(id) {
-        //     this.$store.dispatch('deleteProduct', id);
-        // },
-        // prodCount(count, sum) {
-        //     console.log(count, sum);
-        //     // this.$store.commit('setCount', count, sum);
-        // }
+      ...mapGetters(['inCart']),
+        sumTotal() { // считаем общую сумму товаров
+          if (this.inCart.length) {
+              const arr = this.inCart.map(item => +item.sumProduct);
+              const total = arr.reduce((sum, item) => {
+                  return (sum + item);
+              });
+              return total.toFixed(2);
+          }
+        }
     }
 }
 </script>
@@ -58,24 +50,7 @@ export default {
         padding: 30px 0 50px;
     }
 }
-//.shopping-cart-section {
-//    border-bottom: 1px solid var(--blue-white);
-//    display: flex;
-//    align-items: center;
-//    justify-content: space-between;
-//    .main-img-product {
-//        max-width: 150px;
-//    }
-//}
-//.deleteFromCart {
-//    svg {
-//        max-width: 25px;
-//    }
-//}
-//.deleteFromCart {
-//    width: 30px;
-//    cursor: pointer;
-//}
+
 .totalSum {
     display: flex;
     justify-content: flex-end;

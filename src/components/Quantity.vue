@@ -32,13 +32,18 @@ export default {
             required: true
         }
     },
+    computed: {
+        itemsProd() {
+            return this.regularPrice;
+        }
+    },
     methods: {
         plus() {
             this.counter += 1;
             if (this.counter > 5) {
                 this.counter = 5;
             }
-            // this.$set(this.product, 'quantity', this.counter)
+
             this.$store.dispatch('setQuantity', {
                 id: this.itemsProd.id,
                 counter: this.counter,
@@ -46,7 +51,7 @@ export default {
             });
 
             this.$emit('pruductSum',  this.itemsProd.sumProduct);
-            // this.$emit('prodCount', this.counter, +(this.counter * this.itemsProd).toFixed(2));
+
         },
         minus() {
             this.counter -= 1;
@@ -60,15 +65,10 @@ export default {
             });
 
             this.$emit('pruductSum',  this.itemsProd.sumProduct);
-            // this.$emit('prodCount', this.counter, +(this.counter * this.regularPrice).toFixed(2));
-        },
 
+        },
     },
-    computed: {
-        itemsProd() {
-            return this.regularPrice;
-        }
-    },
+
     mounted() {
         this.counter = this.itemsProd.quantity;
     }
