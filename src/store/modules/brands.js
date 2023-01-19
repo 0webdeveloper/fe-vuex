@@ -1,8 +1,5 @@
 import Brands from '@/db/brands.json';
 import Products from '@/db/products.json';
-import {createLogger} from "vuex";
-import Vue from 'vue'
-
 
 const state = () => ({
     brands: [],
@@ -15,9 +12,7 @@ const getters = {
     allProducts: state => state.products,
     inCart: state => state.cart,
     counterInItem: (state, getters) => {
-        for (let i of getters.inCart) {
-            return i.quantity;
-        }
+        getters.inCart.forEach(i => i.quantity);
     }
 };
 
@@ -69,8 +64,7 @@ const mutations = {
         state.cart.forEach(item => {
             if (item.id == payload.id) {
                 item.quantity = payload.counter; // меняем счетчик
-                const newPrice = +(payload.counter * payload.price).toFixed(2);
-                item.sumProduct = newPrice; // добавляем новое свойство в объект, увеличенной ценой
+                item.sumProduct = +(payload.counter * payload.price).toFixed(2); // добавляем новое свойство в объект, увеличенной ценой
             }
             localStorage.setItem('cart', JSON.stringify(state.cart));
         })
