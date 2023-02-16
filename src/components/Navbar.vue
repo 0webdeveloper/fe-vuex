@@ -33,7 +33,7 @@ import { mapGetters } from "vuex";
 
 export default {
     computed: {
-        ...mapGetters(['inCart'])
+        ...mapGetters({ inCart: 'shopStore/inCart' })
     }
 }
 

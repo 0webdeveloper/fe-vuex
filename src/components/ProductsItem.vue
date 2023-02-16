@@ -7,10 +7,10 @@
         />
         <div class="products__content">
             <p class="products__content__title">{{ product.title }}</p>
-            <p class="products__content__brand">brand {{ product.brand}}</p>
+            <p class="products__content__brand">brand {{ product.brand }}</p>
             <p class="products__content__price">
-                {{ product.regular_price.value}}
-                <span>{{ product.regular_price.currency}}</span>
+                {{ product.regular_price.value }}
+                <span>{{ product.regular_price.currency }}</span>
             </p>
 
             <my-button
@@ -18,22 +18,21 @@
                 @click.native="addToCart(product)"
                 :class="{checkCart: product.btnDisabled}"
                 :disabled="product.btnDisabled"
-            >{{ product.buttonName }}</my-button>
+            >{{ product.buttonName }}
+            </my-button>
         </div>
     </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import {mapActions} from "vuex";
 
 export default {
     name: "ProductsItem",
-    data:()=>({
-
-    }),
+    data: () => ({}),
     props: ['product'],
     methods: {
-        ...mapActions(['putProductToCart']),
+    ...mapActions({ putProductToCart: 'shopStore/putProductToCart' }),
         addToCart(prod) {
 
             this.$set(this.product, 'buttonName', 'В корзине'); // Оптимизировать!
@@ -58,13 +57,15 @@ export default {
 .products__content {
     padding: 15px;
 }
+
 .products__card {
     box-shadow: 0 4px 16px 0 rgb(0 0 0 / 12%);
-    border-radius:3px;
+    border-radius: 3px;
     position: relative;
     overflow: hidden;
     max-width: 350px;
 }
+
 .products__card::before {
     content: '';
     position: absolute;
@@ -89,15 +90,17 @@ export default {
     border: 1px solid #fff;
     background: #fff;
 }
+
 .product__image {
     width: 100%;
     object-fit: cover;
 }
+
 .products__content {
     line-height: 2;
 }
 
-.checkCart{
+.checkCart {
     background: #c38b7d;
     color: #fff;
 }

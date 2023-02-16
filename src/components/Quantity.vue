@@ -44,7 +44,7 @@ export default {
                 this.counter = 5;
             }
 
-            this.$store.dispatch('setQuantity', {
+            this.$store.dispatch('shopStore/setQuantity', {
                 id: this.itemsProd.id,
                 counter: this.counter,
                 price: this.itemsProd.regular_price.value
@@ -58,13 +58,13 @@ export default {
             if (this.counter < 1) {
                 this.counter = 1;
             }
-            this.$store.dispatch('setQuantity', {
+            this.$store.dispatch('shopStore/setQuantity', {
                 id: this.itemsProd.id,
                 counter: this.counter,
                 price: this.itemsProd.regular_price.value
             });
 
-            this.$emit('pruductSum',  this.itemsProd.sumProduct);
+            this.$emit('shopStore/pruductSum',  this.itemsProd.sumProduct);
 
         },
     },

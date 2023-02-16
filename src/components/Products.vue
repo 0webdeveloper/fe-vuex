@@ -18,10 +18,16 @@ export default {
         productsItem
     },
      computed: {
-        ...mapGetters(['allProducts', 'inCart']),
+        ...mapGetters({
+            allProducts: 'shopStore/allProducts',
+            inCart: 'shopStore/inCart'
+        }),
     },
     methods: {
-        ...mapActions(['fetchAllProducts', 'putProductToCart']),
+        ...mapActions({
+            fetchAllProducts: 'shopStore/fetchAllProducts',
+            putProductToCart: 'shopStore/putProductToCart'
+        }),
     },
     mounted() {
         this.fetchAllProducts();

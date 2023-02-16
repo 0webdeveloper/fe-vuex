@@ -22,13 +22,13 @@ export default {
         isActive: null
     }),
     computed: {
-      ...mapGetters(['allBrands']),
+      ...mapGetters({ allBrands: 'shopStore/allBrands' }),
     },
     methods: {
-        ...mapActions(['fetchAllBrands']),
+        ...mapActions({ fetchAllBrands: 'shopStore/fetchAllBrands' }),
         sortBrands(idx, code) {
             this.isActive = idx;
-            this.$store.dispatch('sortBrands', code)
+            this.$store.dispatch('shopStore/sortBrands', code)
         }
     },
     mounted() {

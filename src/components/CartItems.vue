@@ -18,7 +18,7 @@
 
 <script>
 import Quantity from "@/components/Quantity.vue";
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
     name: "CartItems",
@@ -28,14 +28,14 @@ export default {
             required: true
         }
     },
-    data: ()=>({
+    data: () => ({
         prodSumLoad: 1
     }),
     components: {
         Quantity
     },
     computed: {
-        ...mapGetters(['counterInItem']),
+        ...mapGetters({ counterInItem: 'shopStore/counterInItem' }),
         productItem() {
             return this.product;
         },
@@ -45,9 +45,10 @@ export default {
     },
     methods: {
         removeProduct(id) {
-            this.$store.dispatch('deleteProduct', id);
+            this.$store.dispatch('shopStore/deleteProduct', id);
         },
-        prodCount() {}
+        prodCount() {
+        }
     }
 }
 </script>
@@ -74,9 +75,6 @@ export default {
     width: 30px;
     cursor: pointer;
 }
-
-
-
 
 
 </style>
